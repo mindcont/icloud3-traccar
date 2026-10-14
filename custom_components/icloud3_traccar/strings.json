@@ -1,0 +1,132 @@
+{
+  "title": "iCloud3 Traccar",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Traccar sync settings",
+        "description": "Disabled by default. Token status: {token_status}. Positions use OsmAnd; the token is sent only to the web API. Changing settings pauses history imports.",
+        "data": {
+          "enabled": "Enable live synchronization",
+          "server_url": "Traccar server URL (web API)",
+          "receiver_url": "OsmAnd HTTP receiver URL (separate endpoint)",
+          "token": "API token (leave blank to keep configured token)",
+          "interval": "Upload interval (seconds)",
+          "min_distance": "Minimum movement (metres)",
+          "upload_speed": "Upload estimated speed",
+          "upload_course": "Upload estimated course",
+          "upload_battery": "Upload battery",
+          "upload_accuracy": "Upload accuracy",
+          "retries": "Retries per operation",
+          "devices": "iCloud3 devices (empty means all current devices)"
+        }
+      }
+    },
+    "error": {
+      "authentication": "Invalid Traccar token.",
+      "permission": "The token needs device read/create/update and history read permissions.",
+      "unavailable": "Cannot reach Traccar. Check the URL and network.",
+      "invalid_response": "Unexpected server response; verify the API URL.",
+      "invalid_url": "Use an HTTP(S) URL without credentials, query parameters or fragments.",
+      "invalid_token": "Token must not contain newlines.",
+      "missing_connection": "Supply both URLs and the API token, or leave all empty and keep sync disabled.",
+      "invalid_range": "Use an increasing time range with an explicit UTC offset, ending in the past.",
+      "no_devices": "Select existing, enabled iCloud3 device trackers.",
+      "invalid_batch_size": "Batch size must be between 1 and 1000.",
+      "history_running": "A history import is already running.",
+      "history_pending": "Resume or cancel the paused history job first.",
+      "no_history": "No paused history job exists.",
+      "storage_error": "Cannot save the synchronization checkpoint.",
+      "request_rejected": "The server rejected the request.",
+      "device_not_found": "Traccar device or API endpoint was not found.",
+      "duplicate_device": "Several devices have the same uniqueId; resolve this on Traccar first."
+    },
+    "abort": {
+      "already_configured": "Already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "iCloud3 Traccar",
+        "menu_options": {
+          "settings": "Settings",
+          "history": "New history import",
+          "resume": "Resume history",
+          "pause": "Pause history",
+          "cancel": "Cancel history",
+          "status": "Sync status"
+        }
+      },
+      "settings": {
+        "title": "Traccar sync settings",
+        "description": "Disabled by default. Token status: {token_status}. Positions use OsmAnd; the token is sent only to the web API. Changing settings pauses history imports.",
+        "data": {
+          "enabled": "Enable live synchronization",
+          "server_url": "Traccar server URL (web API)",
+          "receiver_url": "OsmAnd HTTP receiver URL (separate endpoint)",
+          "token": "API token (leave blank to keep configured token)",
+          "interval": "Upload interval (seconds)",
+          "min_distance": "Minimum movement (metres)",
+          "upload_speed": "Upload estimated speed",
+          "upload_course": "Upload estimated course",
+          "upload_battery": "Upload battery",
+          "upload_accuracy": "Upload accuracy",
+          "retries": "Retries per operation",
+          "devices": "iCloud3 devices (empty means all current devices)"
+        }
+      },
+      "history": {
+        "title": "Import Recorder history",
+        "description": "Only this action reads Recorder. Range includes start and excludes end. Use ISO times with offsets, e.g. 2026-10-01T00:00:00+08:00. Reimport can create duplicate positions.",
+        "data": {
+          "start": "Start time with UTC offset",
+          "end": "End time with UTC offset",
+          "devices": "Devices (empty uses sync selection)",
+          "skip_duplicates": "Skip consecutive duplicate coordinates",
+          "batch_size": "Records per batch",
+          "allow_reimport": "Allow reimport (may create duplicate positions)"
+        }
+      },
+      "status": {
+        "title": "Sync status",
+        "description": "{status}"
+      }
+    },
+    "error": {
+      "authentication": "Invalid Traccar token.",
+      "permission": "The token needs device read/create/update and history read permissions.",
+      "unavailable": "Cannot reach Traccar. Check the URL and network.",
+      "invalid_response": "Unexpected server response; verify the API URL.",
+      "invalid_url": "Use an HTTP(S) URL without credentials, query parameters or fragments.",
+      "invalid_token": "Token must not contain newlines.",
+      "missing_connection": "Supply both URLs and the API token, or leave all empty and keep sync disabled.",
+      "invalid_range": "Use an increasing time range with an explicit UTC offset, ending in the past.",
+      "no_devices": "Select existing, enabled iCloud3 device trackers.",
+      "invalid_batch_size": "Batch size must be between 1 and 1000.",
+      "history_running": "A history import is already running.",
+      "history_pending": "Resume or cancel the paused history job first.",
+      "no_history": "No paused history job exists.",
+      "storage_error": "Cannot save the synchronization checkpoint.",
+      "request_rejected": "The server rejected the request.",
+      "device_not_found": "Traccar device or API endpoint was not found.",
+      "duplicate_device": "Several devices have the same uniqueId; resolve this on Traccar first."
+    },
+    "abort": {
+      "history_running": "A history import is already running.",
+      "no_history": "No paused history job exists."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "sync_status": {
+        "name": "Traccar sync status",
+        "state": {
+          "disabled": "Disabled",
+          "unknown": "Not connected yet",
+          "connected": "Connected",
+          "unavailable": "Unavailable"
+        }
+      }
+    }
+  }
+}
