@@ -69,9 +69,12 @@ class Source:
             )
             rows = await get_instance(self.hass).async_add_executor_job(query)
             states = rows.get(device.entity_id, [])
-            return sorted((s for s in states if getattr(s, "last_updated", None) is None
-                           or start <= s.last_updated < end),
-                          key=lambda s: getattr(s, "last_updated", None) or end)
+            # Recorder can return metadata-only states without a timestamp.
+            # They cannot represent a historical location, so skip them before
+            # Point.create() validates the timestamp.
+            return sorted((s for s in states if getattr(s, "last_updated", None) is not None
+                           and start <= s.last_updated < end),
+                          key=lambda s: s.last_updated)
         except Exception:
             # DB drivers may include URLs/credentials or values in their exceptions.
             raise SyncError("recorder_unavailable") from None
