@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mindcont/icloud3-traccar/main/custom_components/icloud3_traccar/brand/icon%402x.png" width="120" height="120" alt="iCloud3 Traccar logo">
+</p>
+
 # iCloud3 Traccar
 
 [中文说明](README.zh-CN.md) · [User guide](docs/traccar.md) · [Validation record](docs/traccar-test-results.md)
@@ -39,6 +43,10 @@ flowchart LR
 - Home Assistant 2025.3.4 or newer; automated runtime testing currently targets 2025.3.4.
 - iCloud3 installed and running. This integration reads its existing in-memory device objects; compatibility with every iCloud3 version is not guaranteed. The source implementation was based on iCloud3 3.7.5.
 - Traccar 6.8.1 with an accessible REST API and **separate OsmAnd HTTP receiver**, plus a user token with device read/create/update and position-report read permissions.
+
+## Logo and Home Assistant display
+
+The blue cloud, teal location pin and sync arrow represent location synchronization. Local Home Assistant branding ships in `custom_components/icloud3_traccar/brand/`, including standard, high-resolution and dark-mode icon/logo names. [Download the brand-only ZIP](https://github.com/mindcont/icloud3-traccar/raw/refs/heads/main/docs/assets/icloud3-traccar-brand.zip). See [branding troubleshooting](docs/branding.md) if HA still displays “icon not available”. Updating these image files does not require changing the installed integration version or configuration.
 
 ## Install
 
