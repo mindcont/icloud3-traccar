@@ -30,3 +30,54 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Real Home Assistant imports, configuration and lifecycle
         run: timeout 120 python -m unittest discover -s tests_runtime -v
+
+  release_hassfest:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  publish_preview:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [test, release_hassfest]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Publish only the authorized preview version
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(python -c "import json; print(json.load(open('custom_components/icloud3_traccar/manifest.json'))['version'])")
+          if [ "$version" != "0.1.0-beta.1" ]; then
+            echo "This workflow only publishes the authorized 0.1.0-beta.1 preview."
+            exit 0
+          fi
+          tag="v$version"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Preview already exists; leaving the existing release unchanged."
+            exit 0
+          fi
+          python - <<'PYZIP'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          root = Path('custom_components')
+          with ZipFile('icloud3_traccar.zip', 'w', ZIP_DEFLATED) as archive:
+              for path in sorted((root / 'icloud3_traccar').rglob('*')):
+                  if path.is_file() and '__pycache__' not in path.parts and path.suffix != '.pyc':
+                      archive.write(path, path.relative_to(root))
+          PYZIP
+          sha256sum icloud3_traccar.zip > SHA256SUMS
+          gh release create "$tag" icloud3_traccar.zip SHA256SUMS \
+            --target "$GITHUB_SHA" --prerelease \
+            --title "iCloud3 Traccar $tag" \
+            --notes-file "docs/releases/$tag.md"

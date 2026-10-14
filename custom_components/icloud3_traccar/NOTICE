@@ -1,0 +1,13 @@
+iCloud3 Traccar
+
+Split from the optional bridge developed in mindcont/icloud3 at commit
+991350f13de95a2ee238434e74fd9893e67170d3 (feature/traccar-sync).
+Original integration context: iCloud3 3.7.5, authored by Gary Cobb.
+The upstream MIT license and copyright notice are retained in LICENSE.
+
+This repository contains the optional bridge and its tests/documentation only;
+it does not redistribute the iCloud3 Apple account or tracking implementation.
+
+The abstract cloud/location brand mark is original artwork for this repository.
+Apple, Home Assistant and Traccar names belong to their respective owners;
+no endorsement is implied.

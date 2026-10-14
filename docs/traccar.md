@@ -108,3 +108,8 @@ OsmAnd HTTP ACK、Traccar 异步存储与 HA Store 之间没有分布式事务�
 - [Traccar v6.8.1 OsmAndProtocolDecoder](https://github.com/traccar/traccar/blob/v6.8.1/src/main/java/org/traccar/protocol/OsmAndProtocolDecoder.java)
 - [Traccar v6.8.1 DeviceResource](https://github.com/traccar/traccar/blob/v6.8.1/src/main/java/org/traccar/api/resource/DeviceResource.java)
 - [Traccar v6.8.1 OpenAPI](https://github.com/traccar/traccar/blob/v6.8.1/openapi.yaml)
+
+
+## 发布前手工验证补充
+
+2026-10-14：维护者确认真实 Traccar、浏览器界面及 HACS 安装验证通过，并授权合并发布。本文早期自动化验证范围不等同于这些手工检查；手工结果来自维护者，本次发布不会重连或修改生产实例。

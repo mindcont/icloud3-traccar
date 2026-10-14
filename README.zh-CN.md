@@ -4,13 +4,13 @@
 
 独立的 Home Assistant 自定义集成：把 iCloud3 内存位置同步到 **Traccar 6.8.1**，也可以主动从 HA Recorder 导入历史位置。默认关闭，不会出现在 iCloud3 原配置页面。
 
-当前准备版本为 **`0.1.0-beta.1` 预览版**。已有自动化 HTTP mock、真实 HA 和 SQLite Recorder 测试；尚未完成真实生产 Traccar 与浏览器界面验证。请以本仓库 Actions 为独立发布验证结果；原仓库链接仅保留来源证据。
+当前版本为 **`0.1.0-beta.1` 预览版**。已有自动化 HTTP mock、真实 HA 和 SQLite Recorder 测试。维护者于 2026-10-14 确认真实 Traccar、浏览器界面与 HACS 安装验证通过；手工验证结果由维护者提供，自动化验证见本仓库 Actions。
 
 ## 安装
 
 需要 HA 2025.3.4 或更新版本（当前运行测试针对该版本）、运行中的 iCloud3，以及 Traccar Web API 和独立的 OsmAnd HTTP 接收地址。适配来源为 iCloud3 3.7.5，不能保证所有其他版本的内存结构都兼容。
 
-HACS：待本功能合并到默认分支后，HACS → 自定义仓库 → 添加 `https://github.com/mindcont/icloud3-traccar` → 类型 **Integration** → 下载并重启 HA。预发布版本可能需要在 HACS 开启测试版显示。这不代表已经进入 HACS 默认列表。
+HACS：HACS → 自定义仓库 → 添加 `https://github.com/mindcont/icloud3-traccar` → 类型 **Integration** → 下载并重启 HA。预发布版本可能需要在 HACS 开启测试版显示。这不代表已经进入 HACS 默认列表。
 
 手动：将目标分支/发布版本中的 `custom_components/icloud3_traccar` 整个目录复制到 `/config/custom_components/icloud3_traccar`，重启 HA。不要覆盖原 `icloud3` 目录。
 

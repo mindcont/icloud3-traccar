@@ -4,7 +4,7 @@
 
 Optional Home Assistant custom integration that sends iCloud3 locations to **Traccar 6.8.1** and imports historical locations from Home Assistant Recorder. It is separate from iCloud3 and disabled by default.
 
-**Preview: `0.1.0-beta.1`.** Not yet validated against a production Traccar server or through the browser UI. Automated coverage includes a loopback HTTP server and real Home Assistant / SQLite Recorder. Check Actions for the results of this standalone repository; older linked results document the source implementation.
+**Preview: `0.1.0-beta.1`.** Automated coverage includes a loopback HTTP server and real Home Assistant / SQLite Recorder. On 2026-10-14 the maintainer confirmed real Traccar, browser UI and HACS installation validation passed. These manual results were supplied by the maintainer; see the validation record for provenance and Actions for automated results.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ Optional Home Assistant custom integration that sends iCloud3 locations to **Tra
 
 ### HACS custom repository
 
-Once the standalone changes are merged into this repository's default branch:
+Add this repository through HACS:
 
 1. Open HACS → Custom repositories.
 2. Add `https://github.com/mindcont/icloud3-traccar`, category **Integration**.
