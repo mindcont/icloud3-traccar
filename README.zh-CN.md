@@ -6,6 +6,34 @@
 
 当前版本为 **`0.1.0-beta.1` 预览版**。已有自动化 HTTP mock、真实 HA 和 SQLite Recorder 测试。维护者于 2026-10-14 确认真实 Traccar、浏览器界面与 HACS 安装验证通过；手工验证结果由维护者提供，自动化验证见本仓库 Actions。
 
+## 三者关系与数据流
+
+**iCloud3 负责定位，icloud3_traccar 负责同步，Traccar 负责接收、保存和展示轨迹。** 前两个都是运行在 Home Assistant 内的自定义集成；Traccar 是独立服务。
+
+```mermaid
+flowchart LR
+    subgraph HA["Home Assistant"]
+        I["iCloud3<br/>原有定位集成"]
+        E["iCloud3 device_tracker 实体"]
+        R[("HA Recorder<br/>已记录的历史状态")]
+        B["icloud3_traccar<br/>独立同步集成"]
+
+        I -->|"实时同步：只读内存位置"| B
+        I -->|"原有实体更新"| E
+        E -->|"HA 按 Recorder 配置记录"| R
+        R -.->|"仅用户主动历史导入时读取"| B
+    end
+
+    T["Traccar 6.8.1<br/>设备管理、轨迹存储与展示"]
+    B -->|"OsmAnd HTTP：上传实时和历史位置"| T
+    B <-->|"REST API：设备管理、查重和轨迹读回"| T
+```
+
+- **实时路径**：iCloud3 内存 → icloud3_traccar → Traccar，不经过 Recorder。
+- **历史路径**：用户主动启动导入 → 只读 Recorder → icloud3_traccar → Traccar。
+- **统一标识**：iCloud3 设备在 HA 注册表中的原有 `device_id`，原样作为 Traccar `uniqueId`；实时和历史复用同一设备。
+- **独立配置**：icloud3_traccar 单独安装、添加和配置；关闭它不改变 iCloud3 原有定位流程。
+
 ## 安装
 
 需要 HA 2025.3.4 或更新版本（当前运行测试针对该版本）、运行中的 iCloud3，以及 Traccar Web API 和独立的 OsmAnd HTTP 接收地址。适配来源为 iCloud3 3.7.5，不能保证所有其他版本的内存结构都兼容。
