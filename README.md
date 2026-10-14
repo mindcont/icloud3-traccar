@@ -46,7 +46,7 @@ flowchart LR
 
 ## Logo and Home Assistant display
 
-The blue cloud, teal location pin and sync arrow represent location synchronization. Local Home Assistant branding ships in `custom_components/icloud3_traccar/brand/`, including standard, high-resolution and dark-mode icon/logo names. See [branding troubleshooting](docs/branding.md) if HA still displays “icon not available”. Updating these image files does not require changing the installed integration version or configuration.
+The blue cloud, teal location pin and sync arrow represent location synchronization. Local Home Assistant branding ships in `custom_components/icloud3_traccar/brand/`, including standard, high-resolution and dark-mode icon/logo names. [Download the brand-only ZIP](https://github.com/mindcont/icloud3-traccar/raw/refs/heads/main/docs/assets/icloud3-traccar-brand.zip). See [branding troubleshooting](docs/branding.md) if HA still displays “icon not available”. Updating these image files does not require changing the installed integration version or configuration.
 
 ## Install
 

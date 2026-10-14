@@ -40,6 +40,8 @@ flowchart LR
 
 ## Logo 与 Home Assistant 显示
 
+[仅更新 Logo：下载品牌资源包](https://github.com/mindcont/icloud3-traccar/raw/refs/heads/main/docs/assets/icloud3-traccar-brand.zip)。
+
 蓝色云、青绿色定位标记与同步箭头表示位置同步。集成随附 `brand/` 本地品牌资源，包含普通、高清和深色模式的 icon/logo 文件。若仍显示“icon not available”，请按 [图标显示检查说明](docs/branding.md) 更新资源、完整重启 HA 并刷新浏览器。仅替换图片不需要改动已安装版本号或配置。
 
 ## 安装
