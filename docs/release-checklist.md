@@ -8,7 +8,7 @@ Target version: `v0.1.0-beta.1`. No stable/production claim.
 - [x] Automated HTTP/worker tests and real HA/SQLite Recorder tests included.
 - [x] Dedicated CI and scoped hassfest configuration included.
 - [x] Original brand icon assets included.
-- [ ] Confirm standalone branch Actions results.
+- [x] Confirm standalone branch Actions: 47 behavior tests + 4 real HA/Recorder tests and hassfest passed.
 - [ ] Verify disposable real Traccar 6.8.1, including persistence filters and history.
 - [ ] Verify configuration pages and status sensor in the HA browser UI.
 - [ ] Verify HACS download/install from the default branch or a published preview tag.
