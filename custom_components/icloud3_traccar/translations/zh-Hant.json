@@ -1,0 +1,132 @@
+{
+  "title": "iCloud3 Traccar",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Traccar 同步设置",
+        "description": "默认关闭。Token 状态：{token_status}。位置通过 OsmAnd 上传，Token 仅发送到 Web API。修改设置会暂停历史导入。",
+        "data": {
+          "enabled": "启用实时同步",
+          "server_url": "Traccar 服务地址（Web API）",
+          "receiver_url": "OsmAnd HTTP 接收地址（独立端点）",
+          "token": "API Token（留空保留已配置的 Token）",
+          "interval": "上传间隔（秒）",
+          "min_distance": "最小移动距离（米）",
+          "upload_speed": "上传估算速度",
+          "upload_course": "上传估算方向",
+          "upload_battery": "上传电量",
+          "upload_accuracy": "上传定位精度",
+          "retries": "单次操作失败重试次数",
+          "devices": "iCloud3 设备（留空选择当前全部设备）"
+        }
+      }
+    },
+    "error": {
+      "authentication": "Traccar Token 无效或已失效。",
+      "permission": "Token 需要设备读取、创建、更新及轨迹读取权限。",
+      "unavailable": "无法连接 Traccar，请检查地址和网络。",
+      "invalid_response": "服务返回异常，请检查 Web API 地址。",
+      "invalid_url": "请输入 HTTP(S) 地址，不得包含账号、密码、查询参数或片段。",
+      "invalid_token": "Token 不得包含换行符。",
+      "missing_connection": "请填写两个服务地址和 API Token；或全部留空并停用实时同步。",
+      "invalid_range": "请输入带时区的递增时间范围，结束时间不得晚于当前时间。",
+      "no_devices": "请选择已有且未禁用的 iCloud3 设备。",
+      "invalid_batch_size": "批量大小必须为 1 至 1000。",
+      "history_running": "历史导入已在运行。",
+      "history_pending": "请先继续或取消尚未完成的历史导入。",
+      "no_history": "没有可以继续的历史导入。",
+      "storage_error": "无法保存同步断点。",
+      "request_rejected": "Traccar 拒绝了请求。",
+      "device_not_found": "Traccar 设备或 API 端点不存在。",
+      "duplicate_device": "存在多个相同 uniqueId 的设备，请先在 Traccar 处理。"
+    },
+    "abort": {
+      "already_configured": "已经配置此集成。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "iCloud3 Traccar",
+        "menu_options": {
+          "settings": "同步设置",
+          "history": "新建历史导入",
+          "resume": "继续历史导入",
+          "pause": "暂停历史导入",
+          "cancel": "取消历史导入",
+          "status": "查看同步状态"
+        }
+      },
+      "settings": {
+        "title": "Traccar 同步设置",
+        "description": "默认关闭。Token 状态：{token_status}。位置通过 OsmAnd 上传，Token 仅发送到 Web API。修改设置会暂停历史导入。",
+        "data": {
+          "enabled": "启用实时同步",
+          "server_url": "Traccar 服务地址（Web API）",
+          "receiver_url": "OsmAnd HTTP 接收地址（独立端点）",
+          "token": "API Token（留空保留已配置的 Token）",
+          "interval": "上传间隔（秒）",
+          "min_distance": "最小移动距离（米）",
+          "upload_speed": "上传估算速度",
+          "upload_course": "上传估算方向",
+          "upload_battery": "上传电量",
+          "upload_accuracy": "上传定位精度",
+          "retries": "单次操作失败重试次数",
+          "devices": "iCloud3 设备（留空选择当前全部设备）"
+        }
+      },
+      "history": {
+        "title": "导入 Recorder 历史位置",
+        "description": "仅此操作读取 Recorder。时间范围包含开始、不包含结束。请使用带时区的 ISO 时间，例如 2026-10-01T00:00:00+08:00。重新导入会产生重复轨迹。",
+        "data": {
+          "start": "开始时间（含时区）",
+          "end": "结束时间（含时区）",
+          "devices": "iCloud3 设备（留空使用同步设置）",
+          "skip_duplicates": "跳过连续重复坐标",
+          "batch_size": "每批处理条数",
+          "allow_reimport": "允许重新导入（可能产生重复轨迹）"
+        }
+      },
+      "status": {
+        "title": "同步状态",
+        "description": "{status}"
+      }
+    },
+    "error": {
+      "authentication": "Traccar Token 无效或已失效。",
+      "permission": "Token 需要设备读取、创建、更新及轨迹读取权限。",
+      "unavailable": "无法连接 Traccar，请检查地址和网络。",
+      "invalid_response": "服务返回异常，请检查 Web API 地址。",
+      "invalid_url": "请输入 HTTP(S) 地址，不得包含账号、密码、查询参数或片段。",
+      "invalid_token": "Token 不得包含换行符。",
+      "missing_connection": "请填写两个服务地址和 API Token；或全部留空并停用实时同步。",
+      "invalid_range": "请输入带时区的递增时间范围，结束时间不得晚于当前时间。",
+      "no_devices": "请选择已有且未禁用的 iCloud3 设备。",
+      "invalid_batch_size": "批量大小必须为 1 至 1000。",
+      "history_running": "历史导入已在运行。",
+      "history_pending": "请先继续或取消尚未完成的历史导入。",
+      "no_history": "没有可以继续的历史导入。",
+      "storage_error": "无法保存同步断点。",
+      "request_rejected": "Traccar 拒绝了请求。",
+      "device_not_found": "Traccar 设备或 API 端点不存在。",
+      "duplicate_device": "存在多个相同 uniqueId 的设备，请先在 Traccar 处理。"
+    },
+    "abort": {
+      "history_running": "历史导入已在运行。",
+      "no_history": "没有可以继续的历史导入。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "sync_status": {
+        "name": "Traccar 同步状态",
+        "state": {
+          "disabled": "已停用",
+          "unknown": "尚未连接",
+          "connected": "已连接",
+          "unavailable": "无法连接"
+        }
+      }
+    }
+  }
+}

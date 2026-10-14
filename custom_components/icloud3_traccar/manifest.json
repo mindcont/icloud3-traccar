@@ -1,0 +1,18 @@
+{
+  "domain": "icloud3_traccar",
+  "name": "iCloud3 Traccar",
+  "after_dependencies": [
+    "icloud3",
+    "recorder"
+  ],
+  "codeowners": [
+    "@mindcont"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/mindcont/icloud3-traccar",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/mindcont/icloud3-traccar/issues",
+  "requirements": [],
+  "version": "0.1.0-beta.1"
+}
