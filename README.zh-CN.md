@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mindcont/icloud3-traccar/main/custom_components/icloud3_traccar/brand/icon%402x.png" width="120" height="120" alt="iCloud3 Traccar logo">
+</p>
+
 # iCloud3 Traccar
 
 [English](README.md) · [完整使用说明](docs/traccar.md) · [测试记录](docs/traccar-test-results.md)
@@ -33,6 +37,10 @@ flowchart LR
 - **历史路径**：用户主动启动导入 → 只读 Recorder → icloud3_traccar → Traccar。
 - **统一标识**：iCloud3 设备在 HA 注册表中的原有 `device_id`，原样作为 Traccar `uniqueId`；实时和历史复用同一设备。
 - **独立配置**：icloud3_traccar 单独安装、添加和配置；关闭它不改变 iCloud3 原有定位流程。
+
+## Logo 与 Home Assistant 显示
+
+蓝色云、青绿色定位标记与同步箭头表示位置同步。集成随附 `brand/` 本地品牌资源，包含普通、高清和深色模式的 icon/logo 文件。若仍显示“icon not available”，请按 [图标显示检查说明](docs/branding.md) 更新资源、完整重启 HA 并刷新浏览器。仅替换图片不需要改动已安装版本号或配置。
 
 ## 安装
 
