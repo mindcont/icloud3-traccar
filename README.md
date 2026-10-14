@@ -6,6 +6,34 @@ Optional Home Assistant custom integration that sends iCloud3 locations to **Tra
 
 **Preview: `0.1.0-beta.1`.** Automated coverage includes a loopback HTTP server and real Home Assistant / SQLite Recorder. On 2026-10-14 the maintainer confirmed real Traccar, browser UI and HACS installation validation passed. These manual results were supplied by the maintainer; see the validation record for provenance and Actions for automated results.
 
+## Three components and data flow
+
+**iCloud3 locates devices, icloud3_traccar synchronizes locations, and Traccar receives, stores and displays tracks.** The first two are custom integrations running inside Home Assistant; Traccar is a separate service.
+
+```mermaid
+flowchart LR
+    subgraph HA["Home Assistant"]
+        I["iCloud3<br/>Original location integration"]
+        E["iCloud3 device_tracker entities"]
+        R[("HA Recorder<br/>Recorded historical states")]
+        B["icloud3_traccar<br/>Separate sync integration"]
+
+        I -->|"Live sync: read-only memory snapshots"| B
+        I -->|"Existing entity updates"| E
+        E -->|"HA records according to Recorder settings"| R
+        R -.->|"Read only for user-started history imports"| B
+    end
+
+    T["Traccar 6.8.1<br/>Devices, track storage and display"]
+    B -->|"OsmAnd HTTP: live and historical positions"| T
+    B <-->|"REST API: device management, deduplication and read-back"| T
+```
+
+- **Live path:** iCloud3 memory → icloud3_traccar → Traccar; Recorder is not involved.
+- **History path:** user starts an import → read-only Recorder history → icloud3_traccar → Traccar.
+- **Shared identity:** the existing HA registry `device_id` of each iCloud3 device is used unchanged as Traccar `uniqueId`. Live and history reuse the same device.
+- **Separate setup:** install, add and configure icloud3_traccar independently. Disabling it leaves iCloud3's location workflow intact.
+
 ## Requirements
 
 - Home Assistant 2025.3.4 or newer; automated runtime testing currently targets 2025.3.4.
